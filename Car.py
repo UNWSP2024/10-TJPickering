@@ -1,14 +1,54 @@
-# Program # 2: Car Class
-# Write a class named Car that has the following data attributes:
+#Programmer: Timothy Pickering
+#Date: 3/25/25
+#Title: Classy car program
 
-# __year_model (for the car's year model)
-# __make (for the make of the car)
-# __speed (for the car's current speed)
-# The Car class should have an __init__ method that accepts the car's year model and make as arguments.  These values should be assigned to the object's __year_model and __make data attributes.  It should also assign 0 to the __speed data attribute.
+class Car:
+    #Initialize the Car object with year model, make, and speed set to 0
+    def __init__(self, year_model, make):
+        #Attribute for year model
+        self.__year_model = year_model
+        #Attribute for car make
+        self.__make = make
+        # Speed starts at 0
+        self.__speed = 0
 
-# The class should also have the following methods:
+    def accelerate(self):
+        #Increase the speed by 5
+        self.__speed += 5
 
-# The accelerate method should add 5 to the speed data attribute each time it it called.
-# The brake method should subtract 5 from the speed data attribute each time it is called.
-# The get_speed method should return the current speed.
-# Next, design a program that creates a Car object then calls the accelerate method five times.  After each call to the accelerate method, get the current speed of the car and display it.  The call the brake method.  After each call to the brake method, get the current speed of the car and display it.
+    def brake(self):
+        #Decrease the speed by 5, ensuring it does not go below 0
+        if self.__speed >= 5:
+            self.__speed -= 5
+        else:
+            #Prevents negative speed
+            self.__speed = 0
+
+    def get_speed(self):
+        #Return the current speed of the car
+        return self.__speed
+
+#Main program to test the Car class
+def main():
+    #Create a Car object with user input
+    year = input("Enter the car's year model: ")
+    make = input("Enter the car's make: ")
+    my_car = Car(year, make)
+
+    print("\nAccelerating the car...")
+    #Call accelerate 5 times
+    for _ in range(5):
+        my_car.accelerate()
+        print(f"Current speed: {my_car.get_speed()} mph")
+
+    print("\nApplying brakes...")
+    #Call brake 5 times
+    for _ in range(5):
+        my_car.brake()
+        print(f"Current speed: {my_car.get_speed()} mph")
+
+    print("\nCar stopped.")
+
+#Run the program
+if __name__ == "__main__":
+    main()
